@@ -1,0 +1,35 @@
+{
+  "folders": [
+    {
+      "path": "work",
+      "name": "work"
+    },
+  ],
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "xxx",
+        "command": "echo hello ${workspaceFolder}",
+        "type": "shell",
+        "problemMatcher": [
+          "$tsc"
+        ],
+        "presentation": {
+          "reveal": "always"
+        },
+      "group": "build",
+      "options": {
+        "statusbar": {
+            "hide": false
+        },
+        "env": {
+            "EXT_CC": "clang-12",
+            "CROSS_COMPILE_AARCH64": "${env:HOME}/tools/bin/aarch64-buildroot-linux-gnu-",
+            "CROSS_COMPILE_AARCH64_PATH": "${env:HOME}/tools"
+        }
+      },
+}
+    ]
+  }
+}

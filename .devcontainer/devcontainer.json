@@ -1,0 +1,56 @@
+{
+	"name": "nv ubuntu 22",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"files.autoSave": "onWindowChange",
+				"files.trimTrailingWhitespace": true,
+				"files.trimFinalNewlines": true,
+				"explorer.excludeGitIgnore": true,
+				"editor.renderWhitespace": "all"
+			},
+
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"actboy168.tasks",
+				"ms-vscode-remote.remote-containers",
+				"llvm-vs-code-extensions.vscode-clangd",
+				"eamodio.gitlens'
+			]
+		}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "appuser",
+	"shutdownAction": "stopContainer",
+	"workspaceFolder": "/home/appuser",
+	"containerEnv": {
+		"DISPLAY": "${localEnv:DISPLAY}",
+		"ENV TZ": "Europe/Sofia",
+		"LC_ALL":"C"
+	},
+	"mounts": [
+		"type=bind,source=/tmp/.X11-unix,target=/tmp/.X11-unix",
+		"type=bind,source=${localEnv:HOME}/.ssh,target=/home/appuser/.ssh,readonly",
+		"type=bind,source=${localEnv:HOME}/.gitconfig,target=/home/appuser/.gitconfig,readonly",
+		"type=bind,source=${localWorkspaceFolder}/work,target=/home/appuser/work",
+		"type=bind,source=${localWorkspaceFolder}/mydev.code-workspace,target=/home/appuser/mydev.code-workspace"
+	],
+	"runArgs": [
+		"--cpus=12"
+	],
+}
